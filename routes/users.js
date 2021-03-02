@@ -1,23 +1,25 @@
 const express = require("express");
 const router = express.Router();
-const {nanoid} = require("nanoid");
+const controller = require("../controller/controller");
 
 router
 .route("/")
-.get((req, res) => {
-    res.send("GET /users")
-})
-.post((req, res) => {
-    res.send("POST /users")
-});
+.get((req, res) => controller.getUsers(req, res));
 
 router
-.route("/:userid")
-.get((req, res) => {
-    res.send("GET /users/" + req.params.userid)
-})
-.put((req, res) => {
-    res.send("PUT /users/" + req.params.userid)
-});
+.route("/")
+.post((req, res) => controller.newUser(req, res));
+
+router
+.route("/:id")
+.get((req, res) => controller.getUserById(req, res));
+
+router
+.route("/:id")
+.put((req, res) => controller.updateUserById(req, res));
+
+router
+.route("/:id")
+.delete((req, res) => controller.deleteUserById(req, res));
 
 module.exports = router;

@@ -33,64 +33,78 @@
       "title": "Harry Potter and the Order of the Phoenix",
       "year": "2003",
       "price": "25.00",
-      "id": "2021-02-22T14:33:15.022Z"
+      "id": "Y4Oup77d56wDj0gCxRzt1"
     },
     {
       "author": "G. Orwell",
       "title": "1984",
       "year": "1949",
       "price": "12.00",
-      "id": "2021-02-22T15:07:47.905Z"
+      "id": "Y4Oup77d56wDj0gCxRzt0"
     },
     {
       "author": "Max",
       "title": "My diary",
       "year": "2021",
       "price": "6",
-      "id": "2021-02-22T15:08:25.985Z"
+      "id": "Y4Oup77d56wDj0gCxRzt9"
     },
     {
       "author": "df",
       "title": "asdf",
       "year": "asdf",
       "price": "dsfg",
-      "id": "2/22/2021"
-    },
-    {
-      "author": "adsf",
-      "title": "dsfg",
-      "year": "sdfg",
-      "price": "dsfg",
-      "id": "2/22/2021"
+      "id": "Y4Oup77d56wDj0gCxRzt8"
     },
     {
       "author": "J.K. Rowland",
       "title": "Harry Potter and the Half-Blood Prince",
       "year": "2005",
       "price": "26.00",
-      "id": "2/22/2021"
+      "id": "Y4Oup77d56wDj0gCxRzt6"
     },
     {
-      "author": "sdfg",
-      "title": "gfhh",
+      "author": "George",
+      "title": "Flowers",
       "year": "2005",
       "price": "26.00",
-      "id": "2/22/2021"
+      "id": "Y4Oup77d56wDj0gCxRzt5"
     },
+    {},
     {
-      "author": "ssahdfakld",
-      "title": "fdsggfhgj",
-      "year": "fdhf",
-      "price": "sdg",
-      "id": "2/23/2021"
-    },
-    {
-      "author": "sdfg",
-      "title": "gfhh",
-      "year": "2005",
-      "price": "26.00",
-      "id": "2/23/2021"
+      "author": "Robby",
+      "title": "Banana",
+      "year": "2021",
+      "price": "40.00",
+      "id": "Y4Oup77d56wDj0gCxRzt4"
     }
   ],
-  "user": {}
+  "users": [
+    {
+      "fname": "maxi",
+      "lname": "helms",
+      "password": "bla",
+      "email": "m@h",
+      "id": "gg850PUk3Ti4dr8JB1rjB"
+    },
+    {
+      "fname": "egle",
+      "lname": "helms",
+      "password": "tratata",
+      "email": "e@h",
+      "id": "8BSMyK7bgZOkbG5WjhjoZ"
+    }
+  ],
+  "orders": [
+    {
+      "bookId": "Y4Oup77d56wDj0gCxRzt4",
+      "quantity": "2",
+      "id": "gJKf1xPuSp22EAFDRrR_V"
+    },
+    {
+      "bookId": "Y4Oup77d56wDj0gCxRzt6",
+      "quantity": "5",
+      "id": "gszPrmGEQxQHjozy4CnGt"
+    }
+  ]
 }
