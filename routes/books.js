@@ -18,10 +18,6 @@ router
 
 router
 .route("/new")
-.get((req, res) => controller.getForm(req, res));
-
-router
-.route("/new")
 .post((req, res) => controller.addBook(req, res));
 
 router

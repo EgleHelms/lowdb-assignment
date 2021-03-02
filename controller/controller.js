@@ -15,60 +15,38 @@ const getBooks = (req, res) => {
     return res.json(data);
 }
 
-const getForm = (req, res) => {
-    res.sendFile(__dirname.slice(0,28) + "public/form.html")
-}
-
 const addBook = (req, res) => {
-    const book = req.body;
-
-    const newBook = {
-        author: book.author,
-        title: book.title,
-        year: book.year,
-        price: book.price
-    };
-
+    const newBook = req.body;
     db.get("books").push({...newBook, id: nanoid()}).write();
     res.json({success: true});
 }
 
 const getBookById = (req, res) => {
-    const data = db.get("books").value();
-    data.forEach(el => {
-        if (req.params.id === el.id) {
-        return res.json(el); 
-    }
-})
+    const el = db.get("books")
+    .find({id: req.params.id})
+    .value();
+    res.json(el);
 }
 
 const updateBookById = (req, res) => {
-    const data = db.get("books").value();
-    const book = req.body;
-    data.forEach((el,i) => {
-        if (req.params.id === el.id) {
-            const updated = {
-                author: book.author || el.author,
-                title: book.title || el.title,
-                year: book.year || el.year,
-                price: book.price || el.price,
-                id: el.id
-            }
-            db.get("books").splice(i,1, updated).write();
-        return res.json({success: true});
+    const book = db.get("books").find({id: req.params.id}).value()
+    const updated = {
+        author: req.body.author || book.author,
+        title: req.body.title || book.title,
+        year: req.body.year || book.year,
+        price: req.body.price ||book.price,
+        id: req.params.id
     }
-})
+
+    db.get("books").find({ id: req.params.id }).assign(updated).write();
+    return res.json({success: true});
 }
 
+
 const deleteBookById = (req, res) => {
-    const data = db.get("books").value();
-    data.forEach((el, i) => {
-        if (req.params.id === el.id) {
-            db.get("books").splice(i,1).write();
+        db.get("books").remove({id: req.params.id}).write();
         return res.json({success: true});
     }
-})
-}
 
 //user functions
 const getUsers= (req, res) => {
@@ -77,54 +55,35 @@ const getUsers= (req, res) => {
 }
 
 const newUser = (req, res) => {
-    const user = req.body;
-
-    const newUser = {
-        fname: user.fname,
-        lname: user.lname,
-        password: user.password,
-        email: user.email,
-    };
-
+    const newUser = req.body;
     db.get("users").push({...newUser, id: nanoid()}).write();
     res.json({success: true});
 }
 
 const getUserById = (req, res) => {
-    const data = db.get("users").value();
-    data.forEach(el => {
-        if (req.params.id === el.id) {
-        return res.json(el); 
-    }
-})
+    const el = db.get("users")
+    .find({id: req.params.id})
+    .value();
+    res.json(el);
 }
 
 const updateUserById = (req, res) => {
-    const data = db.get("users").value();
-    const user = req.body;
-    data.forEach((el,i) => {
-        if (req.params.id === el.id) {
-            const updated = {
-                fname: user.fname || el.fname,
-                lname: user.lname || el.lname,
-                password: user.password || el.password,
-                email: user.email || el.email,
-                id: el.id
-            }
-            db.get("users").splice(i,1, updated).write();
-        return res.json({success: true});
+    const user = db.get("users").find({id: req.params.id}).value()
+    const updated = {
+        fname: req.body.fname || user.fname,
+        lname: req.body.lname || user.lname,
+        password: req.body.password || user.password,
+        email: req.body.email ||user.email,
+        id: req.params.id
     }
-})
+
+    db.get("users").find({ id: req.params.id }).assign(updated).write();
+    return res.json({success: true});
 }
 
 const deleteUserById = (req, res) => {
-    const data = db.get("users").value();
-    data.forEach((el, i) => {
-        if (req.params.id === el.id) {
-            db.get("users").splice(i,1).write();
-        return res.json({success: true});
-    }
-})
+    db.get("users").remove({id: req.params.id}).write();
+    return res.json({success: true});
 }
 
 //orders functions
@@ -134,54 +93,37 @@ const getOrders = (req, res) => {
 }
 
 const newOrder = (req, res) => {
-    const order = req.body;
-
-    const newOrder = {
-        bookId: order.bookId,
-        quantity: order.quantity,
-    };
+    const newOrder = req.body;
 
     db.get("orders").push({...newOrder, id: nanoid()}).write();
     res.json({success: true});
 }
 
 const getOrderById = (req, res) => {
-    const data = db.get("orders").value();
-    data.forEach(el => {
-        if (req.params.id === el.id) {
-        return res.json(el); 
-    }
-})
+    const el = db.get("orders")
+    .find({id: req.params.id})
+    .value();
+    res.json(el);
 }
 
 const updateOrderById = (req, res) => {
-    const data = db.get("orders").value();
-    const order = req.body;
-    data.forEach((el,i) => {
-        if (req.params.id === el.id) {
-            const updated = {
-                bookId: order.id || el.bookId,
-                quantity: order.quantity || el.quantity,
-                id: el.id
-            }
-            db.get("orders").splice(i,1, updated).write();
-        return res.json({success: true});
+    const order = db.get("orders").find({id: req.params.id}).value()
+    const updated = {
+        bookId: req.body.bookId || order.fname,
+        quantity: req.body.lname || order.lname,
+        id: req.params.id
     }
-})
+
+    db.get("orders").find({ id: req.params.id }).assign(updated).write();
+    return res.json({success: true});
 }
 
 const deleteOrderById = (req, res) => {
-    const data = db.get("order").value();
-    data.forEach((el, i) => {
-        if (req.params.id === el.id) {
-            db.get("order").splice(i,1).write();
-        return res.json({success: true});
-    }
-})
+    db.get("orders").remove({id: req.params.id}).write();
+    return res.json({success: true});
 }
 
 //export functions
-exports.getForm = getForm;
 exports.getBooks = getBooks;
 exports.addBook = addBook;
 exports.getBookById = getBookById;
